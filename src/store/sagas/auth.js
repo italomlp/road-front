@@ -19,7 +19,7 @@ export function* login(action) {
 export function* saveUser(action) {
   try {
     yield call(AsyncStorage.setItem, '@Road:User', JSON.stringify(action.payload.user));
-    api.defaults.headers.authorization = `bearer ${action.payload.user.token}`;
+    api.defaults.headers.common.authorization = `bearer ${action.payload.user.token}`;
     navigate('App');
   } catch (error) {
     console.tron.log(error);

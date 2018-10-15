@@ -5,20 +5,15 @@ const styles = StyleSheet.create({
   formContainer: {
     padding: metrics.basePadding,
     alignSelf: 'stretch',
+    marginBottom: metrics.baseMargin,
   },
 
-  datePickerContainer: {
+  formActions: {
+    padding: metrics.basePadding,
+    margin: metrics.baseMargin / 2,
     flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: metrics.baseMargin / 4,
-  },
-  datePickerButton: {
-    marginTop: 0,
-    height: 'auto',
-  },
-  datePickerInput: {
-    flex: 1,
   },
 });
 

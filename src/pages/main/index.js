@@ -1,22 +1,21 @@
 import React from 'react';
 
-import { Text } from 'react-native';
-
-import { RView, RButton } from 'components';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as AuthActions } from 'store/ducks/auth';
 
 import PropTypes from 'prop-types';
 
+import { Button, Text, Container } from 'native-base';
 import styles from './styles';
 
 const Main = ({ logoutRequest }) => (
-  <RView>
+  <Container>
     <Text style={styles.title}>Tela principal</Text>
-    <RButton onPress={logoutRequest}>Logout</RButton>
-  </RView>
+    <Button onPress={logoutRequest}>
+      <Text>Sair</Text>
+    </Button>
+  </Container>
 );
 
 Main.propTypes = {

@@ -7,6 +7,8 @@ import LottieView from 'lottie-react-native';
 
 import SplashAnimation from 'assets/splash.json';
 
+import api from 'services/api';
+
 import styles from './styles';
 
 export default class SplashScreen extends Component {
@@ -27,11 +29,17 @@ export default class SplashScreen extends Component {
 
   bootstrapAsync = async () => {
     const values = await Promise.all([
-      new Promise(resolve => setTimeout(() => resolve(), 3000)),
+      // new Promise(resolve => setTimeout(() => resolve(), 3000)),
+      new Promise(resolve => setTimeout(() => resolve(), 0)),
       AsyncStorage.getItem('@Road:User'),
     ]);
-    const userToken = values[1];
-    this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+    const user = JSON.parse(values[1]);
+    if (user) {
+      api.defaults.headers.common.authorization = `bearer ${user.token}`;
+      this.props.navigation.navigate('App');
+    } else {
+      this.props.navigation.navigate('Auth');
+    }
   };
 
   updateAnimation = (animation) => {
@@ -45,7 +53,6 @@ export default class SplashScreen extends Component {
           loop={false}
           style={styles.animation}
           ref={this.updateAnimation}
-          imageAssetsFolder="lottie/splash"
           source={SplashAnimation}
         />
         <StatusBar barStyle="light-content" />

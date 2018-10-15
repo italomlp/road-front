@@ -17,6 +17,7 @@
     "global-require": "off",
     "no-console": "off",
     "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
     "no-unused-vars": [
       "error",
       {

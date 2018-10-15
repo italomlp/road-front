@@ -3,11 +3,18 @@ import { StyleSheet } from 'react-native';
 import { colors, metrics, general } from 'styles';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+
   logo: {
     alignSelf: 'center',
     width: metrics.screenWidth - 100,
-    height: metrics.screenWidth - 100,
-    paddingBottom: 0,
+    height: 100,
+    marginTop: metrics.baseMargin * 3,
+    marginBottom: metrics.baseMargin,
   },
 
   formContainer: {
@@ -15,13 +22,19 @@ const styles = StyleSheet.create({
     margin: metrics.baseMargin,
   },
 
+  formActions: {
+    padding: metrics.basePadding,
+    margin: metrics.baseMargin,
+  },
+
   loginButton: {
-    width: 100,
     alignSelf: 'flex-end',
+    marginBottom: metrics.baseMargin,
   },
 
   footerContainer: {
     alignItems: 'center',
+    marginBottom: metrics.baseMargin,
   },
 
   footerLine: {
@@ -36,7 +49,5 @@ const styles = StyleSheet.create({
     ...general.bold,
   },
 });
-
-styles.placeholderTextColor = colors.white;
 
 export default styles;

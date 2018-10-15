@@ -1,33 +1,20 @@
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
-import styled from 'styled-components';
-import { metrics } from 'styles';
-import { RInput, RButton } from 'components';
+import { StyleSheet, View } from 'react-native';
+import { metrics, colors } from 'styles';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
+
+import {
+  Item, Input, Label, Icon,
+} from 'native-base';
 
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-const Container = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-right: ${metrics.baseMargin / 4};
-`;
-
 const styles = StyleSheet.create({
-  button: {
-    marginTop: 0,
-    height: 'auto',
-  },
-  input: {
-    flex: 1,
-    margin: 0,
-    height: 'auto',
+  icon: {
+    color: colors.white,
   },
 });
 
@@ -79,19 +66,18 @@ export default class RDatepicker extends Component {
       label, handleDate, minimumDate, maximumDate,
     } = this.props;
     return (
-      <Container>
-        <RInput
-          style={styles.input}
-          spellCheck
-          editable={false}
-          pointerEvents="none"
-          placeholder={label}
-          onClick={this.showDatePicker}
-          value={this.getValueDate()}
-        />
-        <RButton onPress={this.showDatePicker} style={styles.button}>
-          <Icon name="calendar" size={metrics.iconSize} />
-        </RButton>
+      <View>
+        <Item floatingLabel onPress={this.showDatePicker}>
+          <Label>{label}</Label>
+          <Input spellCheck editable={false} pointerEvents="none" value={this.getValueDate()} />
+          <Icon
+            android="md-calendar"
+            ios="ios-calendar"
+            style={styles.icon}
+            size={metrics.iconSize}
+            onClick={this.showDatePicker}
+          />
+        </Item>
         <DateTimePicker
           date={this.getDate()}
           minimumDate={minimumDate}
@@ -103,7 +89,7 @@ export default class RDatepicker extends Component {
           }}
           onCancel={this.hideDatePicker}
         />
-      </Container>
+      </View>
     );
   }
 }
